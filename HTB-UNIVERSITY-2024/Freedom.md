@@ -1,4 +1,4 @@
-#Freedom
+# Freedom
 
 Freedom is the second of the three full pwn challenges that we solved with *GCC* during the *Hack the Box University CTF 2024: Binary Badlands*
 

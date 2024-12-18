@@ -43,7 +43,7 @@ SMB         10.129.242.128  445    DC1              [-] freedom.ht
 
 Unfortunately this wasn’t very successful, same for enum4linux.
 
-In our initial nmap scan we could see that the port 80 was open so let’s check it out. We realised it was cms running which was called “Masa CMS” and found several endpoints corresponding to an API : [http://freedom.htb/index.cfm/_api/json/v1/default/](http://freedom.htb/index.cfm/_api/json/v1/default/)
+In our initial nmap scan we could see that the port 80 was open so let’s check it out. We realised it was cms running which was called “Masa CMS” and found several endpoints corresponding to an API : `http://freedom.htb/index.cfm/_api/json/v1/default/`
 
 ![Masa CMS API](/HTB-UNIVERSITY-2024/images/api_masa.png)
 
@@ -62,7 +62,7 @@ Disallow: /themes/
 Disallow: /plugins/
 ```
 
-And visiting the /admin endpoint redirected us to the login page of the CMS : `[http://freedom.htb/admin/?muraAction=clogin.main](http://freedom.htb/admin/?muraAction=clogin.main)`
+And visiting the /admin endpoint redirected us to the login page of the CMS : `http://freedom.htb/admin/?muraAction=clogin.main`
 
 ![Masa CMS Login](/HTB-UNIVERSITY-2024/images/login_masa_cms.png)
 

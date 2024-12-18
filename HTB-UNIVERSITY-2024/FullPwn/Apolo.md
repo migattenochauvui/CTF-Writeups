@@ -63,7 +63,7 @@ curl http://ai.apolo.htb/Api/v1/credentials [{"id":"6cfda83a-b055-4fd8-a040-57e5
 ```
 ## User flag
 
-So we can now `curl [http://ai.apolo.htb/Api/v1/credentials6cfda83a-b055-4fd8-a040-57e5f1dae2eb](http://ai.apolo.htb/Api/v1/credentials6cfda83a-b055-4fd8-a040-57e5f1dae2eb)`
+So we can now `curl http://ai.apolo.htb/Api/v1/credentials6cfda83a-b055-4fd8-a040-57e5f1dae2eb`
 
 And retrieve some credentials : 
 

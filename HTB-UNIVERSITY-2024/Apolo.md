@@ -80,9 +80,11 @@ Database: myDatabase
 We could then login onto the flowiseAI instance we thought we had to RCE from there, but a teammate of us pointed out that these credentials could be used to authenticate on the server using SSH. 
 
 ![ssh_login](/HTB-UNIVERSITY-2024//images/ssh_login.png)
+
 And voilà : we have our user.flag in the usual location (/home/lewis/user.txt)
 
  ![user_flag](/HTB-UNIVERSITY-2024//images/user_flag.png)
+ 
 ## Root flag
 
 Now that we have a shell on the box, let’s check out what our user can execute on the machine : 

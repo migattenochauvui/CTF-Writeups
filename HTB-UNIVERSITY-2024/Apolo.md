@@ -1,3 +1,5 @@
+#Apolo
+
 Apolo is the first of the three full pwn challenges that we solved with *GCC* during the *Hack the Box University CTF 2024: Binary Badlands*
 
 A full pwn challenge is composed of two flags that we have to find in order to complete it, the first one being the user flag and the second one being the root flag. We are given the ip address of a machine / box and we have to first get a RCE on the machine in order to have the user flag, and then privesc in order to get the root flag. 

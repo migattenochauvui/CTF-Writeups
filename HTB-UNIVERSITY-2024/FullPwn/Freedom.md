@@ -168,6 +168,6 @@ And uploaded it onto the CMS :
 
 Now to trigger our payload we just clicked on "Deploy" and we got our shell : 
 
-![Reverse shell](/images/reverse_shell.png)
+![Reverse shell](/HTB-UNIVERSITY-2024/FullPwn/images/reverse_shell.png)
 
 We get a shell on the wsl running on the windows host, but the whole C drive is mounted and we are root! A simple grep and we got both the user and the root flag at the same time! Our solve was completely unintended as the actual solve was mostly AD related (kerberoasting / asrep roasting / kerbrute..).

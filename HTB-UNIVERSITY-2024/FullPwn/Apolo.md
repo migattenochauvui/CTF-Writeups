@@ -79,17 +79,17 @@ Database: myDatabase
 
 We could then login onto the flowiseAI instance we thought we had to RCE from there, but a teammate of us pointed out that these credentials could be used to authenticate on the server using SSH. 
 
-![ssh_login](/HTB-UNIVERSITY-2024//images/ssh_login.png)
+![ssh_login](/HTB-UNIVERSITY-2024/FullPwn/images/ssh_login.png)
 
 And voilà : we have our user.flag in the usual location (/home/lewis/user.txt)
 
- ![user_flag](/HTB-UNIVERSITY-2024//images/user_flag.png)
+ ![user_flag](/HTB-UNIVERSITY-2024/FullPwn/images/user_flag.png)
  
 ## Root flag
 
 Now that we have a shell on the box, let’s check out what our user can execute on the machine : 
 
-![sudo_L](/HTB-UNIVERSITY-2024//images/sudo_L.png)
+![sudo_L](/HTB-UNIVERSITY-2024/FullPwn/images/sudo_L.png)
 
 We are allowed to execute /usr/bin/rclone with sudo permissions on the machine. 
 
@@ -97,8 +97,8 @@ When checking out the man and help page of the rclone command we have : 
 
 `Rclone  is a command-line program to manage files on cloud storage.  It is a feature-rich alternative to cloud vendors web storage interfaces.`
 
-![rclone](/HTB-UNIVERSITY-2024//images/rclone.png)
+![rclone](/HTB-UNIVERSITY-2024/FullPwn/images/rclone.png)
 
 We can execute cat through rclone, and since we can execute rclone with root priviledges, we can simply : 
 
-![rootflag](/HTB-UNIVERSITY-2024//images/rootflag.png)
+![rootflag](/HTB-UNIVERSITY-2024/FullPwn/images/rootflag.png)

@@ -1,6 +1,10 @@
+#Freedom
+
 Freedom is the second of the three full pwn challenges that we solved with *GCC* during the *Hack the Box University CTF 2024: Binary Badlands*
 
 A full pwn challenge is composed of two flags that we have to find in order to complete it, the first one being the user flag and the second one being the root flag. We are given the ip address of a machine / box and we have to first get a RCE on the machine in order to have the user flag, and then privesc in order to get the root flag. 
+
+## Reconnaissance 
 
 ```
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-13 16:01 CET
@@ -41,7 +45,7 @@ Unfortunately this wasn’t very successful, same for enum4linux.
 
 In our initial nmap scan we could see that the port 80 was open so let’s check it out. We realised it was cms running which was called “Masa CMS” and found several endpoints corresponding to an API : [http://freedom.htb/index.cfm/_api/json/v1/default/](http://freedom.htb/index.cfm/_api/json/v1/default/)
 
-![Masa CMS API](/images/api_masa.png)
+![Masa CMS API](/HTB-UNIVERSITY-2024/images/api_masa.png)
 
 The website was essentially a blog with a search functionality that allowed us to filter the articles being posted there. We tried several payloads in order to get an xss or even a ssti but nothing successful.  
 
@@ -60,18 +64,22 @@ Disallow: /plugins/
 
 And visiting the /admin endpoint redirected us to the login page of the CMS : `[http://freedom.htb/admin/?muraAction=clogin.main](http://freedom.htb/admin/?muraAction=clogin.main)`
 
-![Masa CMS Login](/images/login_masa_cms.png)
+![Masa CMS Login](/HTB-UNIVERSITY-2024/images/login_masa_cms.png)
 
 No default or weak credentials turned out to work unfortunately so let’s dig deeper. 
 Playing around with several requests and looking at the answers on burp we managed to pinpoint the exact version of the CMS : Masa CMS 7.4.5
-  ![Masa CMS version](/images/masa_cms_version.png)
+
+  ![Masa CMS version](/HTB-UNIVERSITY-2024/images/masa_cms_version.png)
+  
 After a bit of research we found out that this version of Masa CMS was vulnerable to an SQLi : [https://projectdiscovery.io/blog/hacking-apple-with-sql-injection](https://projectdiscovery.io/blog/hacking-apple-with-sql-injection)
+
+## User flag/Root flag
 
 Let's verify if our instance is indeed vulnerable : 
 
 `http://freedom.htb/index.cfm//_api/json/v1/default/?method=processAsyncObject&object=displayregion&contenthistid=x%5C'&previewID=x`
 
-![Masa CMS version](/images/masa_sql_error.png)
+![Masa CMS version](/HTB-UNIVERSITY-2024/images/masa_sql_error.png)
 
 After searching for masa cms sqli we found this CVE with a POC:
   
@@ -94,7 +102,7 @@ We dumped the DB and found an interesting table containing several users and the
 
 We then decided to change our approach by resetting the administrator password using the “forgot password button” and dumping the reset token in the db. 
 
-![Reset admin pwd](/images/rest_admin_pwd.png)
+![Reset admin pwd](/HTB-UNIVERSITY-2024/images/rest_admin_pwd.png)
 
 At first we were unsuccessful at this and since the CMS was open source our idea was to reverse engineer the method responsible to generate forgotten password tokens : 
 
@@ -114,12 +122,12 @@ teammate managed to dump the link directly in the db using sqlmap :
 
 `http://freedom.htb/?display=editProfile&returnID=E7EAB9CD-78D7-4EBB-A3FA718298F0CF15&returnUserID=75296552-E0A8-4539-B1A46C806D767072`
 
-![Token db](/images/token_db.png)
+![Token db](/HTB-UNIVERSITY-2024/images/token_db.png)
 
 We can then reset the admin password to "admin" for exemple and login on the CMS.
 After looking around the administration page we find an interesting feature : 
  
- ![Upload plugin](/images/upload_plugin.png)
+ ![Upload plugin](/HTB-UNIVERSITY-2024/images/upload_plugin.png)
 While searching for plugin examples we stumbled accross this repository : https://github.com/MasaCMS/MasaAuthenticator
 
 After spending quite some time analysing its source code and testing several payloads / uploading them on the CMS, we managed to get a remote code execution by modifying the following file : `config.xml.cfm`
@@ -151,10 +159,12 @@ with open( filename+".cfm", "w+") as f:
 ```
 
 We zipped the whole plugin again with our malicious : `config.xml.cfm`
- ![Payload](/images/malicious_payload.png)
+
+ ![Payload](/HTB-UNIVERSITY-2024/images/malicious_payload.png)
+ 
 And uploaded it onto the CMS : 
 
-![Zip exploit](/images/exploitzip.png)
+![Zip exploit](/HTB-UNIVERSITY-2024/images/exploitzip.png)
 
 Now to trigger our payload we just clicked on "Deploy" and we got our shell : 
 

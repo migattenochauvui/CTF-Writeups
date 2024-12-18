@@ -1,6 +1,8 @@
 # Clouded
 Clouded is the third of the three fullpwn challenges that we solved with *GCC* during the *Hack the Box University CTF 2024: Binary Badlands*
 
+## Reconnaissance 
+
 ```
 Nmap scan report for clouded.htb (10.129.231.169)
 Host is up (0.023s latency).
@@ -50,6 +52,8 @@ The exception being with .svg files. When we would upload an svg file without th
 We then tried to do some recon on our newly found domain local.clouded.htb and we found out it was an AWS bucket running behind which used a restAPI and an AWS lambda function.
 
 ![AWS lambda](/HTB-UNIVERSITY-2024/images/aws_lambda.png)
+
+## User flag
 
 After a bit more searching and testing we managed to find an XXE injection in the upload feature of the website!
 
@@ -247,6 +251,8 @@ We use hydra to bruteforce: `hydra -C creds.txt ssh://clouded.htb`
 We can now ssh login onto the machine and find the first flag !
 
 ![userflag](/HTB-UNIVERSITY-2024/images/userflag.png)
+
+## Root flag
 
 We then upload linpeas and pspy on the machine using a basic python http server and we execute it:
 

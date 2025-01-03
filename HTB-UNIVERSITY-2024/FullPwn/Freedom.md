@@ -118,7 +118,7 @@ Using infos found in the dumped db we managed to get close to a valid reset link
 `http://freedom.htb/index.cfm/75296552-E0A8-4539-B1A46C806D767072/22FC551F-FABE-EA01-C6EDD0885DDC1682/?userID=75296552-E0A8-4539-B1A46C806D767072`
 
 But it was flagged as `invalid or incorrect reset link`. Around the same time, a 
-teammate managed to dump the link directly in the db using sqlmap : 
+teammate managed to dump the link directly from the db using sqlmap : 
 
 `http://freedom.htb/?display=editProfile&returnID=E7EAB9CD-78D7-4EBB-A3FA718298F0CF15&returnUserID=75296552-E0A8-4539-B1A46C806D767072`
 

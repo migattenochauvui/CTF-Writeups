@@ -4,24 +4,24 @@ Pour ce challenge on doit d'abord retrouver l’identité d'un de l'ancien admin
 
 Toujours avec le useragent castem quand on se rend sur https://norecastem.fr/organisation.php on tombe sur un document intéressant:
 
-![image](orga.png)
+![image](images/orga.png)
 
 On remarque ici qu'une personne a été tuée, ce qui correspond aux informations données dans le challenge. On en déduit donc que la personne que l'on recherche est cette dernière.
 
 Si on se rappelle bien nous avons déja vu ces noms sur la page principale du site de l'entreprise:
 
-![image](equipe.png)
+![image](images/equipe.png)
 
 On peut donc s'imaginer qu'à un moment, la personne que nous cherchons était présente sur cette page du site. Nous allons donc vérifier s'il existe d'anciennes versions du site qui ont été archivées sur Waybackmachine: 
 
-![image](wayback.png)
+![image](images/wayback.png)
 
 bingo, on retrouve le nom de l'ancien administrateur système.
 `Henri Fargelisse`
 
  Comme l’indique la description du challenge, nous devons maintenant chercher sur les réseaux ce que Henri aurait pu dire. Après quelques recherches sur différents réseaux, nous tombons sur son compte Instagram, qui contient une story étrange : 
 
-![image](insta.png)
+![image](images/insta.png)
 
  Voici maintenant la partie difficile de ce challenge : il faut revenir sur ses pas pour ceux qui n’ont pas été assez méticuleux. 
  

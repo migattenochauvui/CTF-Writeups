@@ -1,0 +1,39 @@
+name: "Quelque chose cloche"
+author: "migattenochauvui"
+category: OSINT
+description: |- 
+    L’enquête progresse. Suite à votre première découverte, un nouveau nom est apparu dans les échanges publics liés à Paul Tremblayot.
+
+    Paul aurait laissé un commentaire discret sur un individu, dont l’image de profil semble avoir attiré son attention. Ce dernier pourrait bien faire partie des membres présumés du groupe que vous surveillez.
+
+    En creusant, vous découvrez que cette personne travaille pour une entreprise à l’apparence normale, mais quelque chose cloche. Leur site parait trop lisse, trop propre.
+
+    Une façade, peut-être ? Et si ce site cachait quelque chose… ?
+
+    Le flag est au format: `interiut{*}`
+
+    (Vous tomberez directement sur le flag durant votre enquête)
+
+    ##### **Ne pas lancer de scans de bruteforce (inutile)**
+
+attribution: Written by [migattenochauvui](#)
+value: 500
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 16
+    minimum: 100
+
+flags:
+    - interiut{le_masque_revele_la_verite}
+
+tags:
+    - Facile
+
+requirements:
+    - "Premiers pas"
+
+state: visible
+
+version: "1.0"

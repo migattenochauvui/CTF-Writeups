@@ -1,0 +1,52 @@
+name: "Itineraire Fragile"
+author: "migattenochauvui"
+category: OSINT
+description: |-
+    Le CEO a annoncé qu’il partait en voyage d’affaires à Madrid au mois d’avril.
+
+    Mais plusieurs éléments dans ses messages internes et son attitude vous ont mis la puce à l’oreille. Trop flou. Trop précis à certains moments. Trop vague à d’autres.
+
+    Vous avez également mis la main sur une capture d’écran des derniers messages envoyés par le CEO à Claire juste avant son départ.
+
+    En fouillant un peu plus loin, vous êtes parvenus à compromettre un serveur de l’entreprise utilisé pour sauvegarder automatiquement les photos de son téléphone.
+
+    C’est là que vous tombez sur la version originale de la photo qu’il avait envoyée dans le chat juste avant de décoler.
+
+    Votre objectif : retrouver:
+
+    **la ville réelle de destination,**
+
+    **la durée du vol,**
+
+    **et le nom de l’héliport le plus proche après 56min de vol.**
+
+    Le flag est au format: `interiut{ville de destination_durée du vol_nom de l'heliport}`
+
+    Exemple: `interiut{Rome_2h42_San-Cipriano}`
+
+attribution: Written by [migattenochauvui](#)
+value: 500
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 16
+    minimum: 100
+
+flags:
+    - interiut{Porto_1h17_Santa-Maria}
+    - interiut{Porto_1h16_Santa-Maria}
+
+tags:
+    - Difficile
+
+files:
+    - dist/conversation.png
+    - dist/boarding_ticket_picture_original.png
+
+requirements:
+    - "Quelque chose cloche"
+
+state: visible
+
+version: "0.1"

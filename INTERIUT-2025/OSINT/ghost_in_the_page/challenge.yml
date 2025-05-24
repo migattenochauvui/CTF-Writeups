@@ -1,0 +1,36 @@
+name: "Ghost in the Page"
+author: "migattenochauvui"
+category: OSINT
+description: |- 
+    Il y a quelques semaines, un ancien administrateur système lié à l’entreprise que vous surveillez a subitement disparu, du jour au lendemain. Aucun message, aucune trace, aucune explication.
+    Officiellement, il aurait quitté son poste. Officieusement, certains parlent que quelque chose de grave se serait passé.
+
+    Peu avant sa disparition, il aurait utilisé son compte sur l’un des réseaux sociaux les plus connus pour partager des informations sensibles.
+
+    Retrouvez **dans un premier temps** l’identité de ce dernier, puis **dans un second temps** ce qu’il aurait pu dire sur les réseaux sociaux.
+
+    Le flag est au format: `interiut{*}`
+
+    (Vous tomberez directement sur le flag durant votre enquête)
+
+attribution: Written by [migattenochauvui](#)
+value: 500
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 16
+    minimum: 100
+
+flags:
+    - interiut{retrouve_le_tu_es_la_cle_pour_faire_tomber_le_spectre}
+
+tags:
+    - Moyen
+
+requirements:
+    - "Quelque chose cloche"
+   
+state: visible
+
+version: "1.0"

@@ -1,0 +1,34 @@
+name: "Le Visage du Culte"
+author: "migattenochauvui"
+category: OSINT
+description: |- 
+    Derrière cette organisation obscure, **quelqu’un tire les ficelles depuis le début.**
+    Un nom. Une identité. Une vérité que personne n’a encore osé affronter.
+
+    **Retrouvez l’identité** de celui qui se cache derrière tout ça, grâce aux informations transmises par Henri.
+
+    Le flag est au format: `interiut{Prénom_Nom}`
+
+    Exemple: `interiut{Jean_Dupont}`
+
+attribution: Written by [migattenochauvui](#)
+value: 500
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 16
+    minimum: 100
+
+flags:
+    - interiut{Jonas_Verhoeven}
+
+tags:
+    - Moyen
+
+requirements:
+    - "Ghost in the Page"
+   
+state: visible
+
+version: "1.0"

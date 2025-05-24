@@ -1,0 +1,38 @@
+name: "Sur les traces du fidèle"
+author: "migattenochauvui"
+category: OSINT
+description: |- 
+    L’enquête progresse. Suite à votre première découverte, un nouveau nom est apparu dans les échanges publics liés à Paul Tremblayot.
+
+    Paul aurait laissé un commentaire discret sur un individu, dont l’image de profil semble avoir attiré son attention. Ce dernier pourrait bien faire partie des membres présumés du groupe que vous surveillez.
+
+    Peu d’informations sont disponibles, mais certains détails laissés en ligne pourraient trahir sa localisation réelle.
+
+    Votre objectif : **identifier la ville dans laquelle ce membre présumé réside actuellement.**
+
+    Le flag est au format: `interiut{ville}`
+
+    Exemple:  `interiut{Vannes}`
+
+
+attribution: Written by [migattenochauvui](#)
+value: 500
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 16
+    minimum: 100
+
+flags:
+    - interiut{Guipel}
+
+tags:
+    - Facile
+
+requirements:
+    - "Premiers pas"
+
+state: visible
+
+version: "1.0"

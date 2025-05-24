@@ -1,0 +1,36 @@
+name: "Premiers pas"
+author: "migattenochauvui"
+category: OSINT
+description: |- 
+    Depuis plusieurs semaines, certaines rumeurs font état d’un **groupe sectaire émergent**, discret mais structuré, qui commencerait à étendre son influence sur des cercles fermés. Rien de concret jusqu’à maintenant – aucun nom, aucune preuve.
+
+    Mais un nom commence à revenir dans les canaux secondaires : **Paul Tremblayot**. Ce dernier n’a rien d’un extrémiste connu, mais plusieurs sources affirment qu’il aurait récemment été en contact avec un membre présumé du groupe, lors d’un déplacement personnel.
+
+    Votre mission : **retrouver la ville dans laquelle Paul Tremblayot était en vacances au mois  d'Avril**.
+
+    Le flag est au format: `interiut{ville}`
+
+    Exemple:  `interiut{Vannes}`
+
+
+attribution: Written by [migattenochauvui](#)
+value: 500
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 16
+    minimum: 100
+
+flags:
+    - interiut{Kagoshima}
+
+tags:
+    - Très facile
+
+files:
+    - dist/Graph_des_challs_Osint_InterIUT2K25.png
+    
+state: visible
+
+version: "1.0"

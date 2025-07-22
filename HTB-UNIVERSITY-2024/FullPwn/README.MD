@@ -1,6 +1,7 @@
 ## Writeups for all of the FullPwn challenges from the HTB UNIVERSITY 2024 CTF
 
-### Difficulty
-Apolo: Very Easy \
-Clouded: Easy \
-Freedom: Medium
+| Challenge       | Difficulty | 
+| --------------- | ---------- | 
+| [Apolo](./Apolo) | Very Easy |
+| [Clouded](./Clouded) | Easy |
+| [Freedom](./Freedom) | Medium |

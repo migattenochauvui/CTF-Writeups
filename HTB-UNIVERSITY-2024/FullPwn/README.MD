@@ -2,6 +2,6 @@
 
 | Challenge       | Difficulty | 
 | --------------- | ---------- | 
-| [Apolo](./Apolo) | Very Easy |
-| [Clouded](./Clouded) | Easy |
-| [Freedom](./Freedom) | Medium |
+| [Apolo](./Apolo.md) | Very Easy |
+| [Clouded](./Clouded.md) | Easy |
+| [Freedom](./Freedom.md) | Medium |

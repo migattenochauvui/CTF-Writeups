@@ -1,0 +1,57 @@
+name: "Cible Finale"
+author: "MigatteNoChauvui"
+category: OSINT
+description: |-
+    ![BZH](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGo1NmVqMWhuaG43cDhtYWJjaGQyOXZwY3hzZ2F1bm8ydTllYnFuZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SV5k9Ulnk9LdgYnjbe/giphy.gif)
+
+    Après la capture d’une mule de la BZH Mafia et un long interrogatoire, nous avons appris que le boss de l’organisation doit rencontrer prochainement un client afin de lui transmettre un disque dur rempli de données compromises visant plusieurs grandes entreprises.
+
+    Nous devons retrouver ce point de rendez-vous avant l’heure convenue afin de préparer une interception sur place.
+
+    La BZH Mafia ne communique jamais ses lieux de rencontre de manière explicite. Le groupe privilégie des canaux alternatifs et des procédés détournés pour s’assurer qu’il ne traite jamais avec des amateurs. Dans ce dossier, la seule donnée récupérée à propos du rendez-vous est la suivante : `0xA6f76D375690f6418C73eebD59056927d3c77D2F` avec la mention "TestNet".
+
+    Selon nos informations, cet endroit ne serait pas nouveau pour le boss : il s’agirait de l’un de ses points de rendez-vous habituels. Il aurait même déjà laissé filtrer, à son insu, un peu trop d’informations publiques à son sujet.
+
+    > Vous tomberez directement sur le flag durant votre enquête
+
+    Auteur : [Migatte No Chauvui](https://discord.com/users/390093857297137666)
+
+attribution: 'Auteur : [Migatte No Chauvui](https://discord.com/users/390093857297137666)'
+
+# Liste des fichiers à fournirs aux joueurs
+files:
+
+flags:
+    - BZHCTF{N0_0N3_C4N_H1D3_FR0M_Y0U}
+
+# Dépendence avec d'autres challenges
+requirements:
+
+# Les tags sont visisbles par les joueurs et peuvent donner une idée du thème du challenge
+# Il doit y avoir au moins un tag annoncant la difficulté (Très Facile/Facile/Moyen/Difficile/Très Difficile)
+tags:
+    - Difficile
+
+# Les topics ne sont visibles que par les admins uniquement
+topics: []
+
+
+## Éviter de toucher à ce qui est en dessous ##
+
+# Valeur maximale du challenge en points
+value: 500
+type: dynamic
+state: visible
+extra:
+    initial: 500
+    decay: 100
+    minimum: 50
+
+    # Pour les challenge à la demande uniquement
+    # À remplir par un sysadmin
+    # template_name: exemple-tcp
+
+# Pour les challenge communs uniquement
+# À remplir par un sysadmin
+
+version: "0.1"

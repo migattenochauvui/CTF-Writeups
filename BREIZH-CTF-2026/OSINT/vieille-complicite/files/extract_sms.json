@@ -1,0 +1,35 @@
+{
+  "interception_report": {
+    "metadata": {
+      "agency": "Bureau d'Enquêtes Cyber",
+      "operation_name": "BZH-OPS",
+      "export_date": "2026-03-25T15:00:00Z"
+    },
+    "sms_data": [
+      {
+        "timestamp": "2026-03-24T13:45:12+01:00",
+        "sender": "Free Mobile",
+        "status": "received",
+        "body": "Info Free : Vous avez consommé 80% de votre enveloppe internet (150 Go) pour ce mois. Au-delà, le débit sera réduit. Pour suivre votre conso, rdv sur votre espace abonné."
+      },
+      {
+        "timestamp": "2026-03-24T14:32:05+01:00",
+        "sender": "Numéro inconnu",
+        "status": "received",
+        "body": "Bonjour paulifonta35 ! Cela fait un moment que vous n'avez pas laissé de nouvel avis sur un livre. La communauté attent avec impatience vos prochaines critiques littéraires ! Connectez-vous vite pour mettre à jour vos étagères de lecture."
+      },
+      {
+        "timestamp": "2026-03-25T08:15:22+01:00",
+        "sender": "Mémé",
+        "status": "received",
+        "body": "Ma chérie, j'ai cliqué sur le lien que tu m'as envoyé pour voir tes photos de vacances, mais maintenant mon ordinateur affiche une tête de mort qui clignote en rouge et qui me demande de payer en \"Bitcoins\". C'est un jeu ? J'ai gagné ? Gros bisous, mamie."
+      },
+      {
+        "timestamp": "2026-03-25T12:44:10+01:00",
+        "sender": "Burger King",
+        "status": "received",
+        "body": "🔥 OFFRE FLASH 🔥 Un menu Whopper acheté = Le 2ème au même prix ! Uniquement aujourd'hui dans vos restaurants BK participants. Présentez ce SMS en caisse."
+      }
+    ]
+  }
+}
